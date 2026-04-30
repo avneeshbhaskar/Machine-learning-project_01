@@ -1,0 +1,23 @@
+import pandas as pd
+from sklearn.linear_model import LogisticRegression
+
+# Dataset
+data = {
+    'Budget': [50, 60, 70, 80, 90, 100],   # in crores
+    'Rating': [5, 6, 6.5, 7, 8, 9],        # IMDB rating
+    'Hit':    [0, 0, 0, 1, 1, 1]           # 0 = Flop, 1 = Hit
+}
+
+df = pd.DataFrame(data)
+
+X = df[['Budget', 'Rating']]
+y = df['Hit']
+
+# Model
+model = LogisticRegression()
+model.fit(X, y)
+
+# Prediction
+pred = model.predict([[85, 7.5]])
+
+print("Hit Movie 🎬" if pred[0] == 1 else "Flop Movie ❌")
