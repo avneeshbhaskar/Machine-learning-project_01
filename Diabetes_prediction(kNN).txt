@@ -1,0 +1,20 @@
+import pandas as pd
+from sklearn.neighbors import KNeighborsClassifier
+
+# Sample dataset
+data = {
+    'Glucose': [80, 90, 100, 120, 140, 160],
+    'BMI': [20, 22, 24, 28, 32, 35],
+    'Diabetes': [0, 0, 0, 1, 1, 1]
+}
+
+df = pd.DataFrame(data)
+
+X = df[['Glucose', 'BMI']]
+y = df['Diabetes']
+
+model = KNeighborsClassifier(n_neighbors=3)
+model.fit(X, y)
+
+pred = model.predict([[130, 30]])
+print("Diabetic" if pred[0] == 1 else "Not Diabetic")
