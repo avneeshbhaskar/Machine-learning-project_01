@@ -1,0 +1,20 @@
+import pandas as pd
+from sklearn.linear_model import LogisticRegression
+
+# Dataset
+data = {
+    'Income': [10000, 20000, 30000, 40000, 50000],
+    'Loan':   [5000, 10000, 15000, 20000, 25000],
+    'Approved': [0, 0, 1, 1, 1]
+}
+
+df = pd.DataFrame(data)
+
+X = df[['Income', 'Loan']]
+y = df['Approved']
+
+model = LogisticRegression()
+model.fit(X, y)
+
+pred = model.predict([[25000, 12000]])
+print("Loan Approved" if pred[0] == 1 else "Loan Rejected")
