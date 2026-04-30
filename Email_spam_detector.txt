@@ -1,0 +1,26 @@
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
+
+# Sample dataset
+emails = [
+    "Win money now",
+    "Limited offer just for you",
+    "Hello friend how are you",
+    "Let's meet tomorrow",
+    "Claim your prize now"
+]
+
+labels = [1, 1, 0, 0, 1]  # 1 = spam, 0 = not spam
+
+vectorizer = CountVectorizer()
+X = vectorizer.fit_transform(emails)
+
+model = MultinomialNB()
+model.fit(X, labels)
+
+test = ["Win a free ticket"]
+test_vec = vectorizer.transform(test)
+
+pred = model.predict(test_vec)
+
+print("Spam" if pred[0] == 1 else "Not Spam")
