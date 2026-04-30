@@ -1,0 +1,20 @@
+import pandas as pd
+from sklearn.tree import DecisionTreeClassifier
+
+# Sample dataset
+data = {
+    'MonthlyCharges': [200, 300, 400, 500, 600, 700],
+    'Tenure': [1, 2, 3, 4, 5, 6],
+    'Churn': [1, 1, 0, 0, 0, 1]
+}
+
+df = pd.DataFrame(data)
+
+X = df[['MonthlyCharges', 'Tenure']]
+y = df['Churn']
+
+model = DecisionTreeClassifier()
+model.fit(X, y)
+
+pred = model.predict([[450, 3]])
+print("Will Churn" if pred[0] == 1 else "Will Stay")
