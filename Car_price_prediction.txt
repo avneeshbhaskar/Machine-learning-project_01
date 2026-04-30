@@ -1,0 +1,20 @@
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+
+# Sample dataset
+data = {
+    'Year': [2010, 2012, 2014, 2016, 2018, 2020],
+    'Mileage': [50000, 40000, 30000, 20000, 15000, 10000],
+    'Price': [200000, 300000, 400000, 500000, 600000, 700000]
+}
+
+df = pd.DataFrame(data)
+
+X = df[['Year', 'Mileage']]
+y = df['Price']
+
+model = LinearRegression()
+model.fit(X, y)
+
+pred = model.predict([[2017, 25000]])
+print("Predicted Car Price:", pred[0])
